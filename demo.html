@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Coloris Test</title>
+	</head>
+	<style media="screen">
+		#color_picker {
+		width: 100%;
+		background-color: white;
+		padding: 40px 0;
+		}
+
+		.base-colors,
+		.varied-colors {
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		}
+
+		.color-circle,
+		.color-var {
+		float: left;
+		border-radius: 50%;
+		cursor: pointer;
+		}
+
+		.color-circle {
+		transition: all .2s;
+		width: 25px;
+		height: 25px;
+		margin: 10px;
+		}
+		.color-circle.active {
+		-webkit-transform: scale(1.3, 1.3);
+			  transform: scale(1.3, 1.3);
+		}
+
+		.color-var {
+		-webkit-transform: scale(0, 0);
+			  transform: scale(0, 0);
+		width: 36px;
+		height: 36px;
+		margin: 8px;
+		}
+		.color-var.visible {
+		-webkit-transform: scale(1, 1);
+			  transform: scale(1, 1);
+		}
+		.color-var.active {
+		-webkit-transform: scale(1.3, 1.3);
+			  transform: scale(1.3, 1.3);
+		}
+	</style>
+	<body style="text-align: center;">
+		<div id="color-picker" style="display: inline-block;"></div>
+		<div id="sample" style="display: inline-block; height: 120px; width: 520px; margin-top: 32px; border: solid 3px; border-radius:50%;"></div>
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript">
+			const color_picker = document.getElementById('color-picker');
+			Coloris(color_picker, {
+				'max_intensity': 205
+				,'min_intensity': 50
+			});
+			color_picker.addEventListener('input', function () {
+				console.log(color_picker.value)
+				document.getElementById('sample').style.backgroundColor = color_picker.value;
+			});
+		</script>
+	</body>
+</html>
