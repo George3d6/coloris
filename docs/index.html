@@ -1,0 +1,26 @@
+
+<div id="color-picker-1" style="display: inline-block;"></div>
+<br>
+<div id="sample" style="display: inline-block; height: 120px; width: 520px; margin-top: 32px; border: solid 3px; border-radius:50%;"></div>
+<br>
+<br>
+<div id="color-picker-2" style="display: inline-block;"></div>
+<br>
+<br>
+<br>
+<div id="color-picker-3" style="display: inline-block;"></div>
+<script type="text/javascript" src="https://raw.githubusercontent.com/George3d6/coloris/master/main.js"></script>
+<script type="text/javascript">
+	const color_picker = document.getElementById('color-picker-1');
+	Coloris(color_picker, {
+		'max_intensity': 205
+		,'min_intensity': 50
+	});
+	color_picker.addEventListener('input', function () {
+		document.getElementById('sample').style.backgroundColor = color_picker.value;
+	});
+
+	Coloris(document.getElementById('color-picker-2'), {});
+	Coloris(document.getElementById('color-picker-3'), {});
+</script>
+</body>
