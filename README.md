@@ -11,7 +11,7 @@ and insert into your project (only a single script tag required).
 
 I was based on [this codepen by Lewi Hussey](https://codepen.io/Lewitje/pen/zqVaPY). However, the original used a lot of Jquery and was quite inefficient and hard to read (for my taste, at any rate). So I decided to improve on it and in the process I made a bunch of style modifications.
 
-## Examples & Docs
+## Examples and documentation
 
 1. Include the script (main.js)... minified and cdn hosted version coming soon
 
