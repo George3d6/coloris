@@ -3,10 +3,14 @@
 
 <head>
 	<meta charset="utf-8">
+	 <link rel="stylesheet" type="text/css" href="https://unpkg.com/pell/dist/pell.min.css">
 	<title>Coloris Test</title>
 </head>
 
 <body style="text-align: center;">
+	<div id="editor">
+
+	</div>
 	<div id="color-picker-1" style="display: inline-block;"></div>
 	<br>
 	<div id="sample" style="display: inline-block; height: 120px; width: 520px; margin-top: 32px; border: solid 3px; border-radius:50%;"></div>
@@ -17,6 +21,12 @@
 	<br>
 	<br>
 	<div id="color-picker-3" style="display: inline-block;"></div>
+	<script type="text/javascript">
+		pell.init({
+			element: document.getElementById('editor')
+			,onChange: (text) => console.log(text)
+		});
+	</script>
 	<script type="text/javascript">
 		const Coloris = (function() {
 			'use strcit';
