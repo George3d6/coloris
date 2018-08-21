@@ -20,7 +20,7 @@ I was based on [this codepen by Lewi Hussey](https://codepen.io/Lewitje/pen/zqVa
 3. Initialize the color picker:
 ```
 const color_picker = document.getElementById('color-picker-container') //Our container element
-Coloris(document.getElementById(color_picker));
+Coloris(color_picker);
 ```
 
 4. Listen for color change inputs
@@ -31,3 +31,23 @@ color_picker.addEventListener('input', function() {
 ```
 
 5. [Optional] configure coloris
+```
+const color_picker = document.getElementById('color-picker-container') //Our container element
+
+const options = {
+	"colors": [
+		[253, 216, 53],
+		[255, 125, 86],
+		[12, 57, 53],
+	]
+	,"max_intensity":190
+	,"min_intensity": 20
+	,"variants": 12
+	,"switch_animation_time_factor": 0.1
+	}
+}
+
+Coloris(color_picker, options);
+```
+
+See a live configurable example at: https://george3d6.github.io/coloris/
