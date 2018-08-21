@@ -4,30 +4,66 @@
 <head>
 	<meta charset="utf-8">
 	 <link rel="stylesheet" type="text/css" href="https://unpkg.com/pell/dist/pell.min.css">
+	 <style media="screen">
+	 #color-picker-1 {
+		 background-color: rgba(44,44,44,0.3);
+		 border-radius: 30px;
+		 padding-left: 12px;
+		 padding-right: 12px;
+	 }
+
+	 textarea {
+		margin-top: 10px;
+		margin-left: 50px;
+		width: 360px;
+		height: 100px;
+		-moz-border-bottom-colors: none;
+		-moz-border-left-colors: none;
+		-moz-border-right-colors: none;
+		-moz-border-top-colors: none;
+		background: none repeat scroll 0 0 rgb(210,210,210);
+		border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+		border-image: none;
+		border-radius: 6px 6px 6px 6px;
+		border-style: none solid solid none;
+		border-width: medium 1px 1px medium;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+		color: rgb(90,90,90);
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 1em;
+		line-height: 1.4em;
+		padding: 5px 8px;
+		transition: background-color 0.2s ease 0s;
+		height: 460px;
+		}
+
+
+		textarea:focus {
+		background: none repeat scroll 0 0 #FFFFFF;
+		outline-width: 0;
+		}
+	 </style>
 	<title>Coloris Test</title>
 </head>
 
 <body style="text-align: center;">
-	<div id="editor">
-
+	<div style="text-align: left">
+		<p>
+			This is a demo for Coloris, check out the docs at: https://github.com/George3d6/coloris
+		</p>
+		<p>
+			Change the configuration here (default configs used presently)
+		</p>
 	</div>
+
+	<textarea id="options_box" rows="20" name="comment[text]" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+	</textarea>
+	<br>
+	<br>
 	<div id="color-picker-1" style="display: inline-block;"></div>
 	<br>
 	<div id="sample" style="display: inline-block; height: 120px; width: 520px; margin-top: 32px; border: solid 3px; border-radius:50%;"></div>
 	<br>
-	<br>
-	<div id="color-picker-2" style="display: inline-block;"></div>
-	<br>
-	<br>
-	<br>
-	<div id="color-picker-3" style="display: inline-block;"></div>
-	<script src="https://unpkg.com/pell"></script>
-	<script type="text/javascript">
-		pell.init({
-			element: document.getElementById('editor')
-			,onChange: (text) => console.log(text)
-		});
-	</script>
 	<script type="text/javascript">
 		const Coloris = (function() {
 			'use strcit';
@@ -184,17 +220,44 @@
 		}());
 	</script>
 	<script type="text/javascript">
-		const color_picker = document.getElementById('color-picker-1');
-		Coloris(color_picker, {
-			'max_intensity': 205,
-			'min_intensity': 50
-		});
-		color_picker.addEventListener('input', function() {
-			document.getElementById('sample').style.backgroundColor = color_picker.value;
-		});
+		const textarea = document.getElementById('options_box');
+		textarea.value = `{
+	"options": {
+		"colors": [
+			[253, 216, 53],
+			[255, 125, 86],
+			[229, 57, 53],
+			[67, 160, 71],
+			[0, 178, 255],
+			[0, 126, 216],
+			[94, 53, 177],
+			[86, 66, 60]
+		]
+		,"max_intensity":210
+		,"min_intensity": 80
+		,"variants": 6
+		,"switch_animation_time_factor": 0.06
+	}
+}`
 
-		Coloris(document.getElementById('color-picker-2'), {});
-		Coloris(document.getElementById('color-picker-3'), {});
+		function init(options) {
+			const sample_ele = document.getElementById('sample');
+			const picker_ele = document.getElementById('color-picker-1');
+			picker_ele.innerHTML = '';
+			const color_picker = picker_ele;
+
+			Coloris(color_picker, options['options']);
+			color_picker.addEventListener('input', function() {
+				sample_ele.style.backgroundColor = color_picker.value;
+				document.getElementsByTagName('body')[0].style.backgroundColor = `${color_picker.value.substring(0, color_picker.value.length - 1)},0.8)`;
+			});
+		}
+		init(JSON.parse(textarea.value))
+		textarea.addEventListener('input', () => {
+			try {
+				init(JSON.parse(textarea.value))
+			} catch {}
+		})
 	</script>
 </body>
 

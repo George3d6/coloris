@@ -73,11 +73,11 @@ const Coloris = (function() {
 		}
 
 		if (typeof(options['max_intensity']) === 'undefined') {
-			options['max_intensity'] = 255;
+			options['max_intensity'] = 210;
 		}
 
 		if (typeof(options['min_intensity']) === 'undefined') {
-			options['min_intensity'] = 0;
+			options['min_intensity'] = 80;
 		}
 
 		if (typeof(options['variants']) === 'undefined') {
